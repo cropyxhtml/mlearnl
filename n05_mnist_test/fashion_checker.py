@@ -16,3 +16,15 @@ class FashionChecker:
         plt.colorbar()
         plt.grid(Fasle)
         plt.show()
+
+        # train_images = train_images / 255.0
+        # train_labels = train_labels / 255.0
+        model = keras.Sequential([
+            keras.layers.Flatten(input_shape=(28,28)),
+            keras.layers.Dense(128, activation='relu'),
+            keras.layers.Dense(10, activation='softmax')
+        ])
+        model.compile(optimizer='adam',
+                      loss ='separse_categorical_crossentropy',
+                      metrics=['accuracy'])
+        model.fit(train_images,train_labels,epochs=5)
