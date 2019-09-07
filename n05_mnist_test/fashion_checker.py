@@ -11,11 +11,11 @@ class FashionChecker:
 
         (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 
-        plt.figure
-        plt.imgshow(train_images[10])
-        plt.colorbar()
-        plt.grid(Fasle)
-        plt.show()
+        # plt.figure
+        # plt.imgshow(train_images[10])
+        # plt.colorbar()
+        # plt.grid(Fasle)
+        # plt.show()
 
         # train_images = train_images / 255.0
         # train_labels = train_labels / 255.0
@@ -25,6 +25,10 @@ class FashionChecker:
             keras.layers.Dense(10, activation='softmax')
         ])
         model.compile(optimizer='adam',
-                      loss ='separse_categorical_crossentropy',
+                      loss ='sparse_categorical_crossentropy',
                       metrics=['accuracy'])
+        # Learning
         model.fit(train_images,train_labels,epochs=5)
+        # test
+        test_loss , test_acc =  model.evaluate(test_images,test_labels)
+        print('테스트 정확도: {}'.format(test_acc))
